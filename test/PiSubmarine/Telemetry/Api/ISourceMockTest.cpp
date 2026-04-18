@@ -10,8 +10,9 @@ namespace PiSubmarine::Telemetry::Api
         const Snapshot expectedSnapshot{
             .Depth = 8.0_m,
             .DistanceToSeaFloor = 0.4_m,
-            .BatteryStateOfCharge = NormalizedFraction(0.65),
-            .BatteryCurrent = Amperes{-1.5},
+            .BatteryState = Battery::Telemetry::Api::State{
+                .PackCurrent = Amperes{-1.5},
+                .StateOfCharge = NormalizedFraction(0.65)},
             .Thrusters = std::array<Motor::Telemetry::Api::State, 4>{
                 Motor::Telemetry::Api::State{},
                 Motor::Telemetry::Api::State{},

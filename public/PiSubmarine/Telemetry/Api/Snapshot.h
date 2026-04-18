@@ -2,8 +2,7 @@
 
 #include <array>
 #include <optional>
-
-#include "PiSubmarine/Amperes.h"
+#include "PiSubmarine/Battery/Telemetry/Api/State.h"
 #include "PiSubmarine/Meters.h"
 #include "PiSubmarine/Motor/Telemetry/Api/State.h"
 #include "PiSubmarine/NormalizedFraction.h"
@@ -14,8 +13,7 @@ namespace PiSubmarine::Telemetry::Api
     {
         std::optional<Meters> Depth;
         std::optional<Meters> DistanceToSeaFloor;
-        std::optional<NormalizedFraction> BatteryStateOfCharge;
-        std::optional<Amperes> BatteryCurrent;
+        std::optional<Battery::Telemetry::Api::State> BatteryState;
         std::array<Motor::Telemetry::Api::State, 4> Thrusters{};
         std::optional<NormalizedFraction> BallastPosition;
 
@@ -23,8 +21,7 @@ namespace PiSubmarine::Telemetry::Api
         {
             return OptionalMetersEqual(Depth, other.Depth)
                 && OptionalMetersEqual(DistanceToSeaFloor, other.DistanceToSeaFloor)
-                && OptionalNormalizedFractionEqual(BatteryStateOfCharge, other.BatteryStateOfCharge)
-                && OptionalAmperesEqual(BatteryCurrent, other.BatteryCurrent)
+                && BatteryState == other.BatteryState
                 && Thrusters == other.Thrusters
                 && OptionalNormalizedFractionEqual(BallastPosition, other.BallastPosition);
         }
@@ -41,19 +38,6 @@ namespace PiSubmarine::Telemetry::Api
 
             return !left.has_value() || left->Value == right->Value;
         }
-
-        [[nodiscard]] static constexpr bool OptionalAmperesEqual(
-            const std::optional<Amperes>& left,
-            const std::optional<Amperes>& right) noexcept
-        {
-            if (left.has_value() != right.has_value())
-            {
-                return false;
-            }
-
-            return !left.has_value() || left->Value == right->Value;
-        }
-
         [[nodiscard]] static constexpr bool OptionalNormalizedFractionEqual(
             const std::optional<NormalizedFraction>& left,
             const std::optional<NormalizedFraction>& right) noexcept

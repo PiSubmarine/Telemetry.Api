@@ -10,5 +10,8 @@ PiSubmarineInitTarget(${PISUBMARINE_MODULE_NAME})
 PiSubmarineAddDependency("https://github.com/PiSubmarine/Motor.Telemetry.Api.git" "")
 target_link_libraries(${PISUBMARINE_MODULE_NAME} INTERFACE PiSubmarine.Motor.Telemetry.Api)
 
+PiSubmarineAddDependency("https://github.com/PiSubmarine/Battery.Telemetry.Api.git" "")
+target_link_libraries(${PISUBMARINE_MODULE_NAME} INTERFACE PiSubmarine.Battery.Telemetry.Api)
+
 PiSubmarineAddDependency("https://github.com/PiSubmarine/Units.git" "")
 target_link_libraries(${PISUBMARINE_MODULE_NAME} INTERFACE PiSubmarine.Units)
