@@ -21,10 +21,11 @@ namespace PiSubmarine::Telemetry::Api
             .BallastPosition = std::nullopt};
 
         EXPECT_CALL(sourceMock, GetSnapshot())
-            .WillOnce(testing::Return(expectedSnapshot));
+            .WillOnce(testing::Return(Error::Api::Result<Snapshot>(expectedSnapshot)));
 
         const auto snapshot = sourceMock.GetSnapshot();
 
-        EXPECT_EQ(snapshot, expectedSnapshot);
+        ASSERT_TRUE(snapshot.has_value());
+        EXPECT_EQ(*snapshot, expectedSnapshot);
     }
 }

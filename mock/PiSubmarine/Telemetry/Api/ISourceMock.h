@@ -9,6 +9,6 @@ namespace PiSubmarine::Telemetry::Api
     class ISourceMock : public ISource
     {
     public:
-        MOCK_METHOD(Snapshot, GetSnapshot, (), (const, override));
+        MOCK_METHOD((Error::Api::Result<Snapshot>), GetSnapshot, (), (const, override));
     };
 }
