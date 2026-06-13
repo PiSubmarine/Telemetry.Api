@@ -1,5 +1,6 @@
 #pragma once
 
+#include <compare>
 #include <string>
 
 namespace PiSubmarine::Telemetry::Api
@@ -8,6 +9,6 @@ namespace PiSubmarine::Telemetry::Api
     {
         std::string Value;
 
-        [[nodiscard]] constexpr bool operator==(const ChannelId& other) const noexcept = default;
+        [[nodiscard]] constexpr auto operator<=>(const ChannelId& other) const noexcept = default;
     };
 }
