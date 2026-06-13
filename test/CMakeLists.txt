@@ -5,8 +5,9 @@ include(FetchContent)
 project(${PISUBMARINE_MODULE_NAME}.Test LANGUAGES CXX)
 
 set(${PISUBMARINE_MODULE_NAME}.Test.Sources
-        "PiSubmarine/Telemetry/Api/ISourceMockTest.cpp"
-        "PiSubmarine/Telemetry/Api/SnapshotTest.cpp")
+        "PiSubmarine/Telemetry/Api/ChannelIdTest.cpp"
+        "PiSubmarine/Telemetry/Api/IRawCacheMockTest.cpp"
+        "PiSubmarine/Telemetry/Api/IRawSourceMockTest.cpp")
 
 enable_testing()
 

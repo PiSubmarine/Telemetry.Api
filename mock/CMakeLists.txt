@@ -1,7 +1,8 @@
 include("${_build_cmake_local}")
 
 add_library(${PISUBMARINE_MODULE_NAME}.Mock INTERFACE
-        PiSubmarine/Telemetry/Api/ISourceMock.h)
+        PiSubmarine/Telemetry/Api/IRawCacheMock.h
+        PiSubmarine/Telemetry/Api/IRawSourceMock.h)
 target_include_directories(${PISUBMARINE_MODULE_NAME}.Mock INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}")
 PiSubmarineInitTarget(${PISUBMARINE_MODULE_NAME}.Mock)
 target_link_libraries(${PISUBMARINE_MODULE_NAME}.Mock INTERFACE ${PISUBMARINE_MODULE_NAME})
